@@ -3,16 +3,20 @@ import requests
 import json
 import urllib2
 import os
+import re
 
 # prompt for input
 query = raw_input("Enter the search query for google images: ")
 #downLimit = raw_input("Enter the amount of images to download: ")
 
+# replace whitespace with the '+' symbol for google url
+cleanQuery = re.sub("\s+", "+", query.strip())
+
 # with the query, create url for google images
-url = "https://www.google.com.au/search?q=" + query + "%20&hl=en&source=lnms&tbm=isch"
+url = "https://www.google.com.au/search?q=" + cleanQuery + "%20&hl=en&source=lnms&tbm=isch"
 
 # display url we will download from
-print ("\n--- begin download of query: '" + query + "' from the url:\n" + url + "\n") 
+print ("\n--- begin download of query: '" + cleanQuery + "' from the url:\n" + url + "\n") 
 
 # header is tailored for each browser
 header={'User-Agent':"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.134 Safari/537.36"}
@@ -60,7 +64,7 @@ for i, (imgLink, imgType) in enumerate(imageArray):
 		print imgLink
 	
 		# download image and set its name into the directory
-    	 	f = open(os.path.join(queryDirectory, query + str(i+1)), 'wb')
+    	 	f = open(os.path.join(queryDirectory, query + " " + str(i+1)), 'wb')
 		f.write(rawImage)
 		f.close
 
