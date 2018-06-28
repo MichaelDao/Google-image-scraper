@@ -45,7 +45,7 @@ if not os.path.exists(directory):
 	os.mkdir(directory)
 
 # create a directory specificly for this query
-queryDirectory = os.path.join(directory, query.split()[0])
+queryDirectory = os.path.join(directory, query)
 
 # make sure we create this new directory 
 if not os.path.exists(queryDirectory):
@@ -64,7 +64,7 @@ for i, (imgLink, imgType) in enumerate(imageArray):
 		print imgLink
 	
 		# download image and set its name into the directory
-    	 	f = open(os.path.join(queryDirectory, query + " " + str(i+1)), 'wb')
+    	 	f = open(os.path.join(queryDirectory, query + " (" + str(i+1)) + ")", 'wb')
 		f.write(rawImage)
 		f.close
 
