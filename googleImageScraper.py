@@ -64,7 +64,7 @@ for i, (imgLink, imgType) in enumerate(imageArray):
 		print imgLink
 	
 		# download image and set its name into the directory
-    	 	f = open(os.path.join(queryDirectory, query + " (" + str(i+1)) + ")", 'wb')
+    	 	f = open(os.path.join(queryDirectory, query + " (" + str(i+1)) + ")." + imgType, 'wb')
 		f.write(rawImage)
 		f.close
 
